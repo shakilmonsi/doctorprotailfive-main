@@ -1,10 +1,9 @@
 import React from 'react'
 
-function Home() {
+const  Home=() =>{
   return (
-    <div>
-        <h1>this is a home </h1>
-
+    <div className='mx-5'>
+        <h1>this is a home</h1>
     </div>
   )
 }
