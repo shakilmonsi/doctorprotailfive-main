@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Navber() {
+const  Navber=() =>{
     const menuItems = <React.Fragment>
     <li><Link to="/">Home</Link></li>
     <li><Link to="/contactas">CONTACT AS</Link></li>
@@ -12,7 +12,7 @@ function Navber() {
     <li><Link to="/login">LOGIN</Link></li>
     </React.Fragment>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 flex justify-between">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
