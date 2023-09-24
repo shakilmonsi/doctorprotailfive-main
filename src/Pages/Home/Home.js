@@ -4,6 +4,7 @@ import InfoCards from './Infocard/InfoCards'
 import Servicescard from './Services/Servicescard'
 import MakeAppointment from './MakAppointment/MakeAppointment'
 import Tastimonaim from '../../tastimonaime/Tastimonaim'
+import ContactForm from './Contactfrom/ContactForm'
 
 const  Home=() =>{
   return (
@@ -13,6 +14,7 @@ const  Home=() =>{
 <Servicescard></Servicescard>
 <MakeAppointment></MakeAppointment>
 <Tastimonaim></Tastimonaim>
+<ContactForm></ContactForm>
     </div>
   )
 }
