@@ -3,6 +3,7 @@ import Banner from './Banner/Banner'
 import InfoCards from './Infocard/InfoCards'
 import Servicescard from './Services/Servicescard'
 import MakeAppointment from './MakAppointment/MakeAppointment'
+import Tastimonaim from '../../tastimonaime/Tastimonaim'
 
 const  Home=() =>{
   return (
@@ -11,6 +12,7 @@ const  Home=() =>{
 <InfoCards></InfoCards>
 <Servicescard></Servicescard>
 <MakeAppointment></MakeAppointment>
+<Tastimonaim></Tastimonaim>
     </div>
   )
 }
