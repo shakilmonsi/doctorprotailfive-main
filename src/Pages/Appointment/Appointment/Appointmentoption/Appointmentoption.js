@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Appointmentoption=({appointmentOption})=> {
+const Appointmentoption=({appointmentOption,setTreatment})=> {
     const {name,slots}=appointmentOption
   return (
    
@@ -10,7 +10,11 @@ const Appointmentoption=({appointmentOption})=> {
     <p>{slots.length >0 ? slots[0]:'Try Another day'}</p>
     <p>{slots.length}{slots.length>1? 'spaces':'space'}avolaoil </p>
     <div className="card-actions justify-center">
-      <button className="btn text-white btn-primary">Buy appointment</button>
+      <label
+      onClick={()=>setTreatment(appointmentOption)}
+       htmlFor="booking-modal"
+        className="btn text-white btn-primary">Buy appointment</label>
+
     </div>
   </div>
     </div>
