@@ -26,8 +26,10 @@ fetch('appointmentoption.json')
     </div>
     {
       treatment && 
-      <Bookingmodal treatment={treatment}></Bookingmodal>
+      <Bookingmodal treatment={treatment}
+      selectedDate={selectedDate}
 
+      ></Bookingmodal>
     }
    </section>
   )
