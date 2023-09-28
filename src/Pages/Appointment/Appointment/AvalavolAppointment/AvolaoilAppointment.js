@@ -28,7 +28,7 @@ fetch('appointmentoption.json')
       treatment && 
       <Bookingmodal treatment={treatment}
       selectedDate={selectedDate}
-
+      setTreatment={setTreatment}
       ></Bookingmodal>
     }
    </section>

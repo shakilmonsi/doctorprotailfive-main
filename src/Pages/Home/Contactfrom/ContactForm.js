@@ -20,7 +20,7 @@ const ContactForm=()=> {
   };
 
   return (
-    <section className='mt-16'
+    <section className='mt-16 w-1/2 justify-center mr-16'
   style={{
     background: `url(${appointment})`
   }}>
