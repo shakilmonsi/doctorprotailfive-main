@@ -20,7 +20,7 @@ const ContactForm=()=> {
   };
 
   return (
-    <section className='mt-16 w-1/2 justify-center mr-16'
+    <section className='mt-16 w-1/2 justify-center items-center mr-16'
   style={{
     background: `url(${appointment})`
   }}>
@@ -70,12 +70,9 @@ const ContactForm=()=> {
            className="appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline h-24"
          ></textarea>
        </div>
-       <button
-         type="submit"
-         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-       >
-         সাবমিট
-       </button>
+      
+       <input className='btn btn-accent w-full' type="submit" value="সাবমিট" />
+
      </form>
    </div>
    </section>

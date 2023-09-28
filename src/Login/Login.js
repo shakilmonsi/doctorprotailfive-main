@@ -1,9 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 function Login() {
+  const {register,handleSubmit ,formState:{errors}}=useForm()
+  const handleLogin= data=>{
+    console.log(data)
+  }
+  // const {data,setData}=useState(' ')
   return (
     <div>
-        <h1>this is a login </h1>
+        
+<div className='h-[800px] flex  justify-center items-center'>
+  <div >
+    <h2 className='text-4xl'> Login</h2>
+    {/* .........//// */}
+    <form onSubmit={handleSubmit(handleLogin)} >
+      <div className="form-control w-full max-w-xs">
+  <label className="label">
+    <span className="label-text">email</span>
+  </label>
+  <input {...register("email",{required:'Email address is required'})} type="email" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+ 
+  {errors.email && <p className='text-red' role="alert">{errors.email?.message}</p>}
+
+</div>    
+      <div className="form-control w-full max-w-xs">
+  <label className="label">
+    <span className="label-text">password</span>
+  </label>
+  <input {...register("password",{required:"password required"})} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+  {errors.password && <p className='text-red' role="alert">{errors.password?.message}</p>}
+
+  <label className="label">
+    <span className="label-text ">forget password</span>
+  </label>
+</div>    
+  
+      <input type="submit" className='btn btn-accent w-full'/>
+    </form>
+    <p>new to doctorsprtal <Link to="/signup" className='text-secondary'>create account</Link></p>
+    <div className="divider">OR</div>
+ <button className='btn btn-outline w-full'>with Google</button>
+
+  </div>
+</div>
+
+
     </div>
   )
 }
