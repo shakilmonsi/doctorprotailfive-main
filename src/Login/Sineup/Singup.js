@@ -41,15 +41,18 @@ const Singup = () => {
           </label>
      
       
-          <input  {...register("password",{required:"password is a required", 
-  minLength:{value:6 ,message:'password must be 6 characters or ok'}
+          <input  {...register("password",{required:"password is a required",
+
+  minLength:{value:6 ,message:'password must be 6 characters or ok'},
+  // pattern:{value:/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$/, message:' plaess String password '}
 })} type="text" placeholder="Password" className="input input-bordered w-full max-w-xs" />
         
           {errors.password && <p role="alert">{errors.password?.message}</p>}
+         
 
         </div>    
           
-              <input type="submit" className='btn btn-accent w-full'/>
+              <input type="submit" className='btn btn-accent w-full mt-5'/>
             </form>
             <p> pleasse Login <Link to="/login" className='text-secondary'>alraday account</Link></p>
             <div className="divider">OR</div>
