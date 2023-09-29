@@ -29,8 +29,11 @@ function Login() {
   <label className="label">
     <span className="label-text">password</span>
   </label>
-  <input {...register("password",{required:"password required"})} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
-  {errors.password && <p className='text-red' role="alert">{errors.password?.message}</p>}
+  <input {...register("password",
+  {required:"password required", 
+  minLength:{value:6 ,message:'password must be 6 characters or ok'}
+  })} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+  {errors.password && <p className='text-red' role="alert" >{errors.password?.message}</p>}
 
   <label className="label">
     <span className="label-text ">forget password</span>
@@ -39,7 +42,7 @@ function Login() {
   
       <input type="submit" className='btn btn-accent w-full'/>
     </form>
-    <p>new to doctorsprtal <Link to="/signup" className='text-secondary'>create account</Link></p>
+    <p>new to doctorsprtal <Link to="/singup" className='text-secondary'>create account</Link></p>
     <div className="divider">OR</div>
  <button className='btn btn-outline w-full'>with Google</button>
 

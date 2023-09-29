@@ -4,6 +4,7 @@ import Home from "../../Pages/Home/Home";
 import Login from "../../Login/Login";
 import Appointment from "../../Pages/Appointment/Appointment/Appointment";
 import Contectform from "../../Pages/Contect/Contectform";
+import Singup from "../../Login/Sineup/Singup";
 
  const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ import Contectform from "../../Pages/Contect/Contectform";
             {
                 path:'/login',
                 element: <Login></Login>
+            },
+            {
+                path:'/singup',
+                element: <Singup></Singup>
             },
             {
                 path:"/appointment",
