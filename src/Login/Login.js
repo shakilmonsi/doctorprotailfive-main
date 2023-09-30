@@ -1,6 +1,6 @@
 
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Context/AuthProvider'
 import { useContext, useState } from 'react'
 
@@ -8,12 +8,16 @@ function Login() {
   const {register,handleSubmit ,formState:{errors}}=useForm()
 const  [loginError,setLoginError]=useState(' ')
   const {signIn}=useContext(AuthContext)
+  const location = useLocation()
+  const navigate = useNavigate()
+   const from = location.state?.from?.pathname || "/"
     const handleLogin =(data)=>{
       setLoginError('')
       signIn(data.email, data.password)
 .then(result=>{
   const user=result.user 
   console.log(user)
+  navigate(from,{replace: true})
   
 })
 .catch(error=>{

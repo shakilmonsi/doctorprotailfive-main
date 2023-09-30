@@ -6,6 +6,7 @@ import Appointment from "../../Pages/Appointment/Appointment/Appointment";
 import Contectform from "../../Pages/Contect/Contectform";
 import Singup from "../../Login/Sineup/Singup";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import Privetrouts from "./PrivetRouts/Privetrouts";
 
  const router = createBrowserRouter([
     {
@@ -36,7 +37,7 @@ import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
     },
     {
         path:"/dashbord",
-        element:<Dashboard></Dashboard>
+        element: <Privetrouts> <Dashboard></Dashboard></Privetrouts>
     }
 
 
