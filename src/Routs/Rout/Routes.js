@@ -5,6 +5,7 @@ import Login from "../../Login/Login";
 import Appointment from "../../Pages/Appointment/Appointment/Appointment";
 import Contectform from "../../Pages/Contect/Contectform";
 import Singup from "../../Login/Sineup/Singup";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 
  const router = createBrowserRouter([
     {
@@ -31,8 +32,13 @@ import Singup from "../../Login/Sineup/Singup";
                 path:'/contactas',
                 element:<Contectform></Contectform>
             }
-         ]
-         
+         ]  
+    },
+    {
+        path:"/dashbord",
+        element:<Dashboard></Dashboard>
     }
+
+
  ])
  export default router;

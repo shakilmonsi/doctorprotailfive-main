@@ -20,7 +20,11 @@ const  Navber=() =>{
     <li><Link to="/reviews">REVIEWS</Link></li>
 {
     user?.uid ?
+    <>
+        <li><Link to="/dashbord">Dashboard</Link></li>
+
     <li> <button onClick={handleLogOut}>SIGN UOT</button> </li>
+    </>
     :    <li><Link to="/login">LOGIN</Link></li>
 }
     </React.Fragment>
