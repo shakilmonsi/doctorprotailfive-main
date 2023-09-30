@@ -9,7 +9,7 @@ function Login() {
 const  [loginError,setLoginError]=useState(' ')
   const {signIn}=useContext(AuthContext)
     const handleLogin =(data)=>{
-      setLoginError(' ')
+      setLoginError('')
       signIn(data.email, data.password)
 .then(result=>{
   const user=result.user 
