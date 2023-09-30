@@ -1,5 +1,5 @@
 import React, { createContext, createElement, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import app from '../Firebase/firebase.config';
 export const AuthContext = createContext();
 const auth = getAuth(app)
@@ -17,6 +17,9 @@ const [user,setUser]= useState(null)
   const logOut = ()=>{
     return signOut(auth)
   }
+  const updateUser =(userInfo)=>{
+    return updateProfile(auth,userInfo)
+  }
   useEffect(()=>{
  const unsubscripe=   onAuthStateChanged(auth,currentUser=>{
       console.log('user opserviing ')
@@ -26,6 +29,7 @@ const [user,setUser]= useState(null)
 
   },[])
   const authInfo = {
+    updateUser,
     createUser,
     signIn,
     logOut,
