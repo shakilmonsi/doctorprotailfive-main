@@ -15,7 +15,7 @@ const [loading ,setLoading]= useState(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
     const signIn = (email, password) =>{
-      setLoading(tru)
+      setLoading(true)
       return signInWithEmailAndPassword(auth, email, password);
   }
   const logOut = ()=>{
@@ -23,7 +23,7 @@ const [loading ,setLoading]= useState(true)
   }
   const updateUser =(userInfo)=>{
     setLoading(true)
-    return updateProfile(auth,userInfo)
+    return updateProfile(auth.currentUser,userInfo)
   }
   useEffect(()=>{
  const unsubscripe=   onAuthStateChanged(auth,currentUser=>{
@@ -35,6 +35,7 @@ const [loading ,setLoading]= useState(true)
 
   },[])
   const authInfo = {
+    loading,
     updateUser,
     createUser,
     signIn,

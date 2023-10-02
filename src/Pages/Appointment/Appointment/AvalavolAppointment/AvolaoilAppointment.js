@@ -1,17 +1,25 @@
 import { format } from 'date-fns'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Appointmentoption from '../Appointmentoption/Appointmentoption'
 import Bookingmodal from '../bookingmodal/Bookingmodal'
+import { AuthContext } from '../../../../Context/AuthProvider'
+import { useQuery } from '@tanstack/react-query'
 
 const AvolaoilAppointment=({selectedDate})=> {
-    const [appointmentOption ,setAppointmentOption]=useState([])
+    // const [appointmentOption ,setAppointmentOption]=useState([])
   const [treatment,setTreatment]=useState([])
-    useEffect(()=>{
+  
 
-fetch('appointmentoption.json')
-.then(res=>res.json())
-.then(data=>setAppointmentOption(data))
-  },[])
+const {data:appointmentOption=[]}= useQuery({
+  queryKey:['appointmentOption'],
+  queryFn: async ()=>{
+    const res = await fetch('http://localhost:5000/appointmentoption')
+  const data= await res.json()
+  return data
+  }
+})
+
+
     return (
    <section className='my-16'>
             <p className='text-secondary text-boild text-center'>this appointment date{format(selectedDate,'PP')}</p>

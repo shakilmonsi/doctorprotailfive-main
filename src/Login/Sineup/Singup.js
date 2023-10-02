@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import toast from 'react-hot-toast';
 // ^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$
@@ -10,6 +10,7 @@ const Singup = () => {
    //class 73-6 
    const [sinupError,setSinUpError]=useState('')
     const {createUser,updateUser}=useContext(AuthContext)
+    const navigate = useNavigate()
     const handleSingup =(data)=>{
       setSinUpError('')
 createUser(data.email, data.password)
@@ -21,7 +22,9 @@ createUser(data.email, data.password)
     displayName:data.name
   }
   updateUser(userInfo)
-.then(()=>{},[])
+.then(()=>{
+  navigate('/')
+},[])
 .catch(err=>{
   console.log(err)
   setSinUpError(err.message)
