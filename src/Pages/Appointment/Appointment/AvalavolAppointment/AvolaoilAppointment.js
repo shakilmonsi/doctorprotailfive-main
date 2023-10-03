@@ -4,21 +4,27 @@ import Appointmentoption from '../Appointmentoption/Appointmentoption'
 import Bookingmodal from '../bookingmodal/Bookingmodal'
 import { AuthContext } from '../../../../Context/AuthProvider'
 import { useQuery } from '@tanstack/react-query'
+import Loading from '../../../Loading/Loading'
 
 const AvolaoilAppointment=({selectedDate})=> {
     // const [appointmentOption ,setAppointmentOption]=useState([])
   const [treatment,setTreatment]=useState([])
   
 const date= format(selectedDate, 'PP')
-const {data:appointmentOption=[], refetch}= useQuery({
+const {data:appointmentOption=[], refetch,isLoading}= useQuery({
   queryKey:['appointmentOption',date],
   queryFn: async ()=>{
     const res = await fetch(`http://localhost:5000/appointmentoption?date=${date}`)
   const data= await res.json()
   return data
-  }
-})
+  },
+  
+  
 
+})
+if(isLoading){
+  return <Loading></Loading>
+}
 
     return (
    <section className='my-16'>
