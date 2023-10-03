@@ -9,11 +9,11 @@ const AvolaoilAppointment=({selectedDate})=> {
     // const [appointmentOption ,setAppointmentOption]=useState([])
   const [treatment,setTreatment]=useState([])
   
-
-const {data:appointmentOption=[]}= useQuery({
-  queryKey:['appointmentOption'],
+const date= format(selectedDate, 'PP')
+const {data:appointmentOption=[], refetch}= useQuery({
+  queryKey:['appointmentOption',date],
   queryFn: async ()=>{
-    const res = await fetch('http://localhost:5000/appointmentoption')
+    const res = await fetch(`http://localhost:5000/appointmentoption?date=${date}`)
   const data= await res.json()
   return data
   }
@@ -37,6 +37,7 @@ const {data:appointmentOption=[]}= useQuery({
       <Bookingmodal treatment={treatment}
       selectedDate={selectedDate}
       setTreatment={setTreatment}
+      refetch={refetch}
       ></Bookingmodal>
     }
    </section>

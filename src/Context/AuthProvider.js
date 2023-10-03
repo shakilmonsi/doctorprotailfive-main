@@ -23,7 +23,7 @@ const [loading ,setLoading]= useState(true)
   }
   const updateUser =(userInfo)=>{
     setLoading(true)
-    return updateProfile(auth.currentUser,userInfo)
+    return updateProfile(auth.createUser,userInfo)
   }
   useEffect(()=>{
  const unsubscripe=   onAuthStateChanged(auth,currentUser=>{
