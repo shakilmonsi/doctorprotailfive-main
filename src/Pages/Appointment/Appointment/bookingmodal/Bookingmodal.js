@@ -42,6 +42,9 @@ const {user}=useContext(AuthContext)
     toast.success('bookings success fully')
     refetch();
     }
+    else{
+        toast.error(data.message)
+    }
   
    
 })

@@ -14,7 +14,13 @@ const date= format(selectedDate, 'PP')
 const {data:appointmentOption=[], refetch,isLoading}= useQuery({
   queryKey:['appointmentOption',date],
   queryFn: async ()=>{
-    const res = await fetch(`http://localhost:5000/appointmentoption?date=${date}`)
+
+    // class-74-4 old verssion 
+    // const res = await fetch(`http://localhost:5000/appointmentoption?date=${date}`)
+    //  class-74-7 verssion new
+
+    const res = await fetch(`http://localhost:5000/v2/appointmentoption?date=${date}`)
+
   const data= await res.json()
   return data
   },
