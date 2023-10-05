@@ -6,92 +6,88 @@ import toast from 'react-hot-toast';
 // ^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$
 // 
 const Singup = () => {
-    const  {register,handleSubmit ,formState:{errors}}=useForm();
-   //class 73-6 
-   const [sinupError,setSinUpError]=useState('')
-    const {createUser,updateUser}=useContext(AuthContext)
-    const navigate = useNavigate()
-    const handleSingup =(data)=>{
-      setSinUpError('')
-createUser(data.email, data.password)
-.then(result=>{
-  const user=result.user 
-  console.log(user)
-  toast('user creaded saccessFully')
-  const userInfo={
-    displayName:data.name
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  //class 73-6 
+  const { createUser, updateUser } = useContext(AuthContext)
+
+  const [signUpError, setSignUPError] = useState('')
+  const navigate = useNavigate();
+
+  const handleSignUp = (data) => {
+      setSignUPError('');
+      createUser(data.email, data.password)
+          .then(result => {
+              const user = result.user;
+              console.log(user);
+              toast('User Created Successfully.')
+              const userInfo = {
+                  displayName: data.name
+              }
+              updateUser(userInfo)
+                  .then(() => {
+                    saveUser(data.name, data.email);
+                   })
+                  .catch(err => console.log(err));
+          })
+          .catch(error => {
+              console.log(error)
+              setSignUPError(error.message)
+          });
   }
-  updateUser(userInfo)
-.then(()=>{
-  navigate('/')
-},[])
-.catch(err=>{
-  console.log(err)
-  setSinUpError(err.message)
-}) 
-})
-.catch(error=>console.log(error))
-    }
-    return (
-        <div>
-        
-        <div className='h-[800px] flex  justify-center items-center'>
-          <div >
-            <h2 className='text-4xl text-center'>SINGUP</h2>
-            {/* .........//// */}
-            <form onClick={handleSubmit(handleSingup)} >
-              <div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text">name</span>
-          </label>
-          <input  {...register("name",{required: "name is required"})} type="text" placeholder="your naem" className="input input-bordered w-full max-w-xs" />
-         
-        
-        </div>    
-              <div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text">email</span>
-          </label>
-          <input  {...register("email",{required:'email is a required'})} type="email" placeholder=" Your Email " className="input input-bordered w-full max-w-xs" />
-         
-          {errors.email && <p role="alert">{errors.email?.message}</p>}
-
-        </div>    
-              <div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text">password</span>
-          </label>
-     
+  const saveUser = (name, email) =>{
+    const user ={name, email};
+    fetch('http://localhost:5000/users/createUser', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data =>{
+      console.log(" save user and nok de", data)
+      navigate('/')
       
-          <input  {...register("password",{required:"password is a required",
+    })
+}
 
-  minLength:{value:6 ,message:'password must be 6 characters or ok'},
-  // pattern:{value:/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$/, message:' plaess String password '}
-})} type="text" placeholder="Password" className="input input-bordered w-full max-w-xs" />
-        
-          {errors.password && <p role="alert">{errors.password?.message}</p>}
-         
+  return (
+      <div className='h-[800px] flex justify-center items-center'>
+          <div className='w-96 p-7'>
+              <h2 className='text-xl text-center'>Sign Up</h2>
+              <form onSubmit={handleSubmit(handleSignUp)}>
+                  <div className="form-control w-full max-w-xs">
+                      <label className="label"> <span className="label-text">Name</span></label>
+                      <input type="text" {...register("name", {
+                          required: "Name is Required"
+                      })} className="input input-bordered w-full max-w-xs" />
+                      {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                  </div>
+                  <div className="form-control w-full max-w-xs">
+                      <label className="label"> <span className="label-text">Email</span></label>
+                      <input type="email" {...register("email", {
+                          required: true
+                      })} className="input input-bordered w-full max-w-xs" />
+                      {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                  </div>
+                  <div className="form-control w-full max-w-xs">
+                      <label className="label"> <span className="label-text">Password</span></label>
+                      <input type="password" {...register("password", {
+                          required: "Password is required",
+                          minLength: { value: 6, message: "Password must be 6 characters long" },
+                      })} className="input input-bordered w-full max-w-xs" />
+                      {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+                  </div>
+                  <input className='btn btn-accent w-full mt-4' value="Sign Up" type="submit" />
+                  {signUpError && <p className='text-red-600'>{signUpError}</p>}
+              </form>
+              <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
+              <div className="divider">OR</div>
+              <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
 
-        </div>    
-          
-              <input type="submit" className='btn btn-accent w-full mt-5'/>
-           <div>
-            {
-              sinupError && <p className='text-red-600'>{sinupError}</p>
-            }
-           </div>
-            </form>
-            <p> pleasse Login <Link to="/login" className='text-secondary'>alraday account</Link></p>
-            <div className="divider">OR</div>
-         <button className='btn btn-outline w-full'>with Google</button>
-        
           </div>
-        </div>
-        
-        
-            </div>
-    
-    );
+      </div>
+  );
 };
 
 

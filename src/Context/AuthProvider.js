@@ -20,20 +20,25 @@ const [loading ,setLoading]= useState(true)
   }
   const logOut = ()=>{
     return signOut(auth)
-  }
+     }
+
   const updateUser =(userInfo)=>{
     setLoading(true)
     return updateProfile(auth.createUser,userInfo)
   }
-  useEffect(()=>{
- const unsubscripe=   onAuthStateChanged(auth,currentUser=>{
-      console.log('user opserviing ')
-      setUser(currentUser)
-      setLoading(false)
-    })
-    return()=>unsubscripe()
 
-  },[])
+
+
+  
+  useEffect( () =>{
+    const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+        console.log('user observing');
+        setUser(currentUser);
+        setLoading(false);
+    });
+
+    return () => unsubscribe();
+}, [])
   const authInfo = {
     loading,
     updateUser,

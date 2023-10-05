@@ -7,7 +7,7 @@ import Contectform from "../../Pages/Contect/Contectform";
 import Singup from "../../Login/Sineup/Singup";
 import Privetrouts from "./PrivetRouts/Privetrouts";
 import DashboardLoayut from "../../leyout/DashboardLeyout/DashboardLoayut";
-import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import Myappointments from "../../Pages/Dashboard/Dashboard/MyAppointment/Myappointments";
 
  const router = createBrowserRouter([
     {
@@ -42,7 +42,7 @@ import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
    children:[
     {
         path: '/dashbord',
-        element: <Dashboard></Dashboard>
+        element: <Myappointments></Myappointments>
 
     }
    ]
