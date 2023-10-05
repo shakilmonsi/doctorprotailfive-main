@@ -22,10 +22,13 @@ const [loading ,setLoading]= useState(true)
     return signOut(auth)
      }
 
-  const updateUser =(userInfo)=>{
-    setLoading(true)
-    return updateProfile(auth.createUser,userInfo)
-  }
+     // problelm updateUser
+     const updateUser = (userDetails) => {
+      setLoading(true)
+      return updateProfile(auth.createUser, {
+        displayName: userDetails.name,
+      })
+    }
 
 
 
