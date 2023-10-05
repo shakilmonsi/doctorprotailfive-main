@@ -17,7 +17,7 @@ const {data: bookings=[]}=useQuery({
 
     return (
         <div>
-            <h2>this is a appointment</h2>
+            <h2 className='text-4xl fond-bold text-center text-primary'> appointment</h2>
             <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
