@@ -3,22 +3,31 @@ import { useForm } from 'react-hook-form'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Context/AuthProvider'
 import { useContext, useState } from 'react'
+import useToken from '../hooks/useToken'
 
 function Login() {
   const {register,handleSubmit ,formState:{errors}}=useForm()
 const  [loginError,setLoginError]=useState(' ')
+const [loginUserEmail,setLoginUserEmail]=useState('')
+const [token]=useToken(loginUserEmail)
   const {signIn}=useContext(AuthContext)
   const location = useLocation()
   const navigate = useNavigate()
    const from = location.state?.from?.pathname || "/"
-    const handleLogin =(data)=>{
+    if(token){
+      navigate(from,{replace: true})
+
+    }
+   
+   const handleLogin =(data)=>{
       setLoginError('')
       signIn(data.email, data.password)
 .then(result=>{
   const user=result.user 
-  console.log(user)
-  navigate(from,{replace: true})
-  
+  //class -77-7
+setLoginUserEmail(data.email)
+  // navigate(from,{replace: true})
+
 })
 .catch(error=>{
   console.log(error)

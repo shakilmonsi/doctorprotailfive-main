@@ -8,6 +8,7 @@ import Singup from "../../Login/Sineup/Singup";
 import Privetrouts from "./PrivetRouts/Privetrouts";
 import DashboardLoayut from "../../leyout/DashboardLeyout/DashboardLoayut";
 import Myappointments from "../../Pages/Dashboard/Dashboard/MyAppointment/Myappointments";
+import Allusers from "../../Pages/Dashboard/Dashboard/Allusers/Allusers";
 
  const router = createBrowserRouter([
     {
@@ -44,7 +45,11 @@ import Myappointments from "../../Pages/Dashboard/Dashboard/MyAppointment/Myappo
         path: '/dashbord',
         element: <Myappointments></Myappointments>
 
-    }
+    },
+    {
+        path: '/dashbord/allusers',
+        element: <Allusers></Allusers>
+    },
    ]
    
     }
