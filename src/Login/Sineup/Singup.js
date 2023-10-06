@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import useToken from '../../hooks/useToken';
 // ^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$
 // 
+// 
 const Singup = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   //class 73-6 
