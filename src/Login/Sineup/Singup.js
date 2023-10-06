@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import toast from 'react-hot-toast';
+import useToken from '../../hooks/useToken';
 // ^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$
 // 
 const Singup = () => {
@@ -11,7 +12,14 @@ const Singup = () => {
   const { createUser, updateUser } = useContext(AuthContext)
 
   const [signUpError, setSignUPError] = useState('')
+  // class -75-6
+  const [createdUserEmail,setCreatedUserEmail]=useState('')
+  const [token]=useToken(createdUserEmail)
+
   const navigate = useNavigate();
+  if(token){
+    navigate('/ ')
+  }
 
   const handleSignUp = (data) => {
       setSignUPError('');
@@ -45,7 +53,7 @@ const Singup = () => {
     })
     .then(res => res.json())
     .then(data =>{
-        getUserToken(email)
+   setCreatedUserEmail(email)
       console.log(" save user and nok de", data)
 
     //   navigate('/')
@@ -54,17 +62,17 @@ const Singup = () => {
     }
 
     //class 75-5 
-const getUserToken= email=>{
-    fetch(`http://localhost:5000/jwt?email=${email}`)
-    .then(res=>res.json())
-    .then(data=>{
-        if(data.accessToken){
-            localStorage.setItem('accessToken',data.accessToken)
-            navigate('/')
+// const getUserToken= email=>{
+//     fetch(`http://localhost:5000/jwt?email=${email}`)
+//     .then(res=>res.json())
+//     .then(data=>{
+//         if(data.accessToken){
+//             localStorage.setItem('accessToken',data.accessToken)
+//             navigate('/')
 
-        }
-    })
-}
+//         }
+//     })
+// }
 
   return (
       <div className='h-[800px] flex justify-center items-center'>
