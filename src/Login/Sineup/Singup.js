@@ -45,9 +45,24 @@ const Singup = () => {
     })
     .then(res => res.json())
     .then(data =>{
+        getUserToken(email)
       console.log(" save user and nok de", data)
-      navigate('/')
-      
+
+    //   navigate('/')
+            
+        })
+    }
+
+    //class 75-5 
+const getUserToken= email=>{
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+    .then(res=>res.json())
+    .then(data=>{
+        if(data.accessToken){
+            localStorage.setItem('accessToken',data.accessToken)
+            navigate('/')
+
+        }
     })
 }
 
